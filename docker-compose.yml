@@ -32,6 +32,9 @@ services:
       SPRING_DATASOURCE_PASSWORD: root
       SPRING_SQL_INIT_MODE: always
       SERVER_PORT: 8090
+      DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY:-}
+      DEEPSEEK_BASE_URL: ${DEEPSEEK_BASE_URL:-https://api.deepseek.com}
+      DEEPSEEK_MODEL: ${DEEPSEEK_MODEL:-deepseek-chat}
       TZ: Asia/Shanghai
     ports:
       - "18090:8090"

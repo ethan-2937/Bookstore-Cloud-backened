@@ -1,6 +1,6 @@
 # Bookstore Cloud Backend
 
-An online bookstore backend with books, orders, reviews, support tickets, and PageHelper pagination. Spring AI/RAG customer service can be added in a later version.
+An online bookstore backend with books, orders, reviews, support tickets, PageHelper pagination, and a DeepSeek-powered AI customer service endpoint. A vector-store RAG version can be added in a later release.
 
 ## Tech Stack
 
@@ -8,6 +8,7 @@ An online bookstore backend with books, orders, reviews, support tickets, and Pa
 - Spring Boot 4
 - MyBatis + PageHelper
 - MySQL 8
+- DeepSeek Chat API
 - Docker Compose
 
 ## Local Run
@@ -31,6 +32,15 @@ This starts a MySQL container and the backend service. MySQL is exposed on host 
 ```powershell
 docker compose up -d --build
 ```
+
+To enable DeepSeek answers in Docker:
+
+```powershell
+$env:DEEPSEEK_API_KEY="sk-your-key"
+docker compose up -d --build
+```
+
+If no API key is configured, `/api/ai/chat` still returns a local bookstore recommendation based on MySQL book data.
 
 Useful commands:
 
@@ -60,6 +70,7 @@ http://localhost:18090
 - `GET /api/orders/my?username=`
 - `POST /api/reviews?username=`
 - `POST /api/support/tickets?username=`
+- `POST /api/ai/chat?username=&role=`
 
 ## Environment Variables
 
@@ -70,3 +81,8 @@ http://localhost:18090
 | `SPRING_DATASOURCE_PASSWORD` | `root` |
 | `SPRING_SQL_INIT_MODE` | `always` |
 | `SERVER_PORT` | `8090` |
+| `DEEPSEEK_API_KEY` | empty |
+| `DEEPSEEK_BASE_URL` | `https://api.deepseek.com` |
+| `DEEPSEEK_MODEL` | `deepseek-chat` |
+| `DEEPSEEK_TEMPERATURE` | `0.4` |
+| `DEEPSEEK_MAX_TOKENS` | `900` |
