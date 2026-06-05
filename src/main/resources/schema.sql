@@ -93,4 +93,16 @@ CREATE TABLE IF NOT EXISTS support_messages (
     CONSTRAINT fk_support_messages_ticket FOREIGN KEY (ticket_id) REFERENCES support_tickets(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+CREATE TABLE IF NOT EXISTS faq_knowledge (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    category VARCHAR(80) NOT NULL,
+    question VARCHAR(255) NOT NULL,
+    answer TEXT NOT NULL,
+    enabled BOOLEAN NOT NULL DEFAULT TRUE,
+    created_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_faq_category (category),
+    INDEX idx_faq_enabled (enabled)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 INSERT IGNORE INTO admins (username, password) VALUES ('admin', 'admin');

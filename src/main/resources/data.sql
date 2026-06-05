@@ -77,3 +77,43 @@ WHERE NOT EXISTS (SELECT 1 FROM books WHERE title = '乌合之众' AND author = 
 INSERT INTO books (title, author, category, price, stock, cover_url, description)
 SELECT '枪炮、病菌与钢铁', 'Jared Diamond', '社会科学', 72.00, 21, '', '从地理、农业、技术和疾病等角度解释人类社会发展的差异。'
 WHERE NOT EXISTS (SELECT 1 FROM books WHERE title = '枪炮、病菌与钢铁' AND author = 'Jared Diamond');
+
+INSERT INTO faq_knowledge (category, question, answer, enabled)
+SELECT '订单', '订单有哪些状态？', '订单状态包括待支付、已支付、已发货、已完成和已取消。待支付订单可以继续支付或取消；已支付、已发货、已完成订单可以在订单明细中对图书进行评价。', TRUE
+WHERE NOT EXISTS (SELECT 1 FROM faq_knowledge WHERE question = '订单有哪些状态？');
+
+INSERT INTO faq_knowledge (category, question, answer, enabled)
+SELECT '支付', '如何支付订单？', '用户登录后将图书加入购物车，填写收货信息并提交订单，订单初始状态为待支付。进入右上角个人菜单的“我的订单”，点击待支付订单的“支付”按钮即可完成模拟支付。', TRUE
+WHERE NOT EXISTS (SELECT 1 FROM faq_knowledge WHERE question = '如何支付订单？');
+
+INSERT INTO faq_knowledge (category, question, answer, enabled)
+SELECT '评论', '购买后如何评论图书？', '用户需要先购买并支付订单。进入右上角个人菜单的“我的订单”，展开已支付、已发货或已完成订单，在对应图书明细中点击“评价”即可发布评论。', TRUE
+WHERE NOT EXISTS (SELECT 1 FROM faq_knowledge WHERE question = '购买后如何评论图书？');
+
+INSERT INTO faq_knowledge (category, question, answer, enabled)
+SELECT '客服', '如何联系人工客服？', '用户可以在右上角个人菜单进入“客服中心”新建工单，也可以在智能客服中说明问题并确认创建工单。管理员可在“客服工单”中查看并回复。', TRUE
+WHERE NOT EXISTS (SELECT 1 FROM faq_knowledge WHERE question = '如何联系人工客服？');
+
+INSERT INTO faq_knowledge (category, question, answer, enabled)
+SELECT '配送', '图书如何配送？', '当前系统用于课程综合实践演示，订单提交时会记录收货人、联系电话和收货地址。管理员可根据订单状态模拟发货流程。', TRUE
+WHERE NOT EXISTS (SELECT 1 FROM faq_knowledge WHERE question = '图书如何配送？');
+
+INSERT INTO faq_knowledge (category, question, answer, enabled)
+SELECT '退换货', '可以退换货吗？', '课程演示版暂未实现真实退换货流程。若订单仍为待支付状态，用户可以取消订单；若已支付或已发货，建议通过客服中心提交工单说明情况。', TRUE
+WHERE NOT EXISTS (SELECT 1 FROM faq_knowledge WHERE question = '可以退换货吗？');
+
+INSERT INTO faq_knowledge (category, question, answer, enabled)
+SELECT '发票', '是否支持开发票？', '当前版本暂未实现发票模块。如需发票，可通过客服中心提交工单，管理员后续可以扩展发票申请与处理流程。', TRUE
+WHERE NOT EXISTS (SELECT 1 FROM faq_knowledge WHERE question = '是否支持开发票？');
+
+INSERT INTO faq_knowledge (category, question, answer, enabled)
+SELECT '账号', '忘记账号或无法登录怎么办？', '当前系统采用简化登录方案，用户需要使用注册时填写的用户名和密码登录。如无法登录，可以重新注册体验账号或联系管理员。', TRUE
+WHERE NOT EXISTS (SELECT 1 FROM faq_knowledge WHERE question = '忘记账号或无法登录怎么办？');
+
+INSERT INTO faq_knowledge (category, question, answer, enabled)
+SELECT '库存', '图书库存不足怎么办？', '图书库存不足时不能加入购物车或创建订单。可以选择其他同类图书，或通过客服中心提交补货建议。', TRUE
+WHERE NOT EXISTS (SELECT 1 FROM faq_knowledge WHERE question = '图书库存不足怎么办？');
+
+INSERT INTO faq_knowledge (category, question, answer, enabled)
+SELECT '推荐', '如何选择适合自己的技术书？', '可以告诉智能客服你的学习目标，例如 Java 后端、前端开发、数据库、算法或软件工程。智能客服会结合当前书库的分类、简介、价格和库存给出推荐。', TRUE
+WHERE NOT EXISTS (SELECT 1 FROM faq_knowledge WHERE question = '如何选择适合自己的技术书？');
